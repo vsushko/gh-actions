@@ -1,0 +1,27 @@
+name: Using filters Action workflow
+
+on:
+  push:
+    branches:
+      - main
+      - demo/*
+      - "!sample"
+    tags:
+      - v1.*
+    paths:
+      - "**/.js"
+      - "**.md"
+      - "docs/*"
+      - "!docs/file.txt"
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List Files
+        run: |
+          pwd
+          ls -a
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
