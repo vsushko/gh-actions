@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+  labels:
+    app: nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+        - name: nodejsapp
+          image: 386753716683.dkr.ecr.us-east-2.amazonaws.com/vsushkorepo/nodejsapp:1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
